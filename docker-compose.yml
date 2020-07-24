@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  php_app:
+    image: thecodingmachine/php:7.4-v3-apache-node12
+    environment:
+      PHP_EXTENSION_UUID: 1
+      PHP_EXTENSION_XDEBUG: 1
+      APACHE_EXTENSION_DAV: 1
+      APACHE_EXTENSION_SOCACHE_SHMCB: 1
+      APACHE_EXTENSION_SSL: 1
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+
+  database:
+    image: mysql:5.7
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
